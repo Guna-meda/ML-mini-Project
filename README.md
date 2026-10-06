@@ -1,10 +1,10 @@
 # Application of Machine Learning Methods to Evaluate Collectibles
 
-This repository reproduces the reference CS229 Funko Pop collectible-pricing experiments using the provided curated dataset. The original files remain under `CS229-master/`; the clean, runnable reproduction is under `project/`.
+This repository reproduces the reference CS229 Funko Pop collectible-pricing experiments using the curated dataset bundled in this repository. The reproduction is self-contained under `project/` and does not require the original `CS229-master` repository.
 
 ## Dataset
 
-The reproduction uses `CS229-master/project/src/data_sourcing/data_curated.csv`. No new data is scraped, and the dataset is not replaced.
+The reproduction uses `project/data/data_curated.csv` (originally taken unchanged from the reference repository's `project/src/data_sourcing/`). No new data is scraped. A different file can be used via `--data-path`.
 
 ## Methodology
 

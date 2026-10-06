@@ -1,6 +1,6 @@
 # Reproduction Notes
 
-This reproduction keeps the original reference files under `CS229-master/` untouched and places the runnable, organized implementation under `project/`.
+The runnable, organized implementation lives under `project/` and is self-contained: it does not need the original reference repository (`CS229-master/`), which is kept only for reference.
 
 ## Compatibility fixes
 
@@ -10,7 +10,7 @@ This reproduction keeps the original reference files under `CS229-master/` untou
 
 ## Preserved methodology
 
-- Uses the provided curated dataset at `CS229-master/project/src/data_sourcing/data_curated.csv`.
+- Uses the curated dataset at `project/data/data_curated.csv` (copied unchanged from the reference repository's `project/src/data_sourcing/data_curated.csv`; the code no longer reads from `CS229-master/`).
 - Does not scrape StockX or use any external data.
 - Uses the reference logarithmic five-bin target construction.
 - Uses `log(search_volume)` min-max normalization.

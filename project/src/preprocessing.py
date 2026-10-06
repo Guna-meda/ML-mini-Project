@@ -17,14 +17,7 @@ MODEL_FEATURES = NUMERIC_FEATURES + CATEGORICAL_FEATURES
 
 
 def default_data_path() -> Path:
-    return (
-        Path(__file__).resolve().parents[2]
-        / "CS229-master"
-        / "project"
-        / "src"
-        / "data_sourcing"
-        / "data_curated.csv"
-    )
+    return Path(__file__).resolve().parents[1] / "data" / "data_curated.csv"
 
 
 def load_curated_data(data_path: Path | str | None = None) -> pd.DataFrame:
