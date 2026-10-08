@@ -1,4 +1,4 @@
-# Funko Pop Price-Bin Classification
+# Application of Machine Learning Methods to Evaluate Collectibles
 
 A machine-learning mini-project that predicts the **price bin** of a Funko Pop figure from its category, material, special-version flag and search volume.
 
