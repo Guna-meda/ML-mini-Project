@@ -147,7 +147,9 @@ def run(data_path: str | None = None) -> None:
     reference_rows = run_reference_models(X, X_ordinal, y)
     bagging_rows = run_bagging_experiment(X, y)
 
-    results_df = pd.DataFrame(reference_rows + [max(bagging_rows, key=lambda r: r["test_f1"])])
+    results_df = pd.DataFrame(
+        reference_rows + [max(bagging_rows, key=lambda r: r["test_f1"])]
+    )
     bagging_df = pd.DataFrame(bagging_rows)
     comparison_df = build_reference_comparison(results_df)
 

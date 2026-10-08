@@ -1,7 +1,7 @@
 """Reference model runners."""
 
 import numpy as np
-from sklearn.ensemble import BaggingClassifier
+from sklearn.ensemble import BaggingClassifier, GradientBoostingClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.svm import SVC
@@ -93,3 +93,16 @@ def run_bagging_experiment(X, y: np.ndarray) -> list[dict]:
         row["num_trees"] = num_tree
         rows.append(row)
     return rows
+
+
+def run_gradient_boosting_experiment(X, y: np.ndarray) -> dict:
+    """Part 2 extension: Gradient Boosting under the reference CV and metrics."""
+    # Dense input: the validated Part 2 result was produced on a dense matrix
+    # (sparse input takes a different split-search path in scikit-learn).
+    X_dense = X.toarray() if hasattr(X, "toarray") else np.asarray(X)
+    return evaluate_standard_model(
+        "gradient_boosting",
+        lambda: GradientBoostingClassifier(random_state=1),
+        X_dense,
+        y,
+    )

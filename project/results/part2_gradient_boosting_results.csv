@@ -1,0 +1,2 @@
+model,train_precision,train_recall,train_f1,test_precision,test_recall,test_f1,class_1_train_precision,class_2_train_precision,class_3_train_precision,class_4_train_precision,class_5_train_precision,class_1_test_precision,class_2_test_precision,class_3_test_precision,class_4_test_precision,class_5_test_precision
+gradient_boosting,0.8664088198652775,0.8579615861214375,0.8562441039187639,0.4228366086984886,0.44569288389513106,0.43223627499186157,0.8192464167378573,0.8629484117002537,1.0,0.9409722222222222,1.0,0.5163003663003662,0.44774399042691726,0.1746031746031746,0.0,0.0

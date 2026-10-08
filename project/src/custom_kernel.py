@@ -9,9 +9,9 @@ def category_probabilities(X_ordinal: np.ndarray) -> tuple[np.ndarray, np.ndarra
     category_count = int(np.max(X_ordinal[:, 1])) + 1
     material_count = int(np.max(X_ordinal[:, 2])) + 1
     version_count = int(np.max(X_ordinal[:, 3])) + 1
-    category_prob = np.zeros((category_count, 1))
-    material_prob = np.zeros((material_count, 1))
-    version_prob = np.zeros((version_count, 1))
+    category_prob = np.zeros(category_count, dtype=float)
+    material_prob = np.zeros(material_count, dtype=float)
+    version_prob = np.zeros(version_count, dtype=float)
     for i in range(category_count):
         category_prob[i] = np.sum(X_ordinal[:, 1] == i) / X_ordinal.shape[0]
     for i in range(material_count):

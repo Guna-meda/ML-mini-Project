@@ -1,0 +1,3 @@
+| model | train_precision | train_recall | train_f1 | test_precision | test_recall | test_f1 | class_1_train_precision | class_2_train_precision | class_3_train_precision | class_4_train_precision | class_5_train_precision | class_1_test_precision | class_2_test_precision | class_3_test_precision | class_4_test_precision | class_5_test_precision |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| gradient_boosting | 0.8664 | 0.858 | 0.8562 | 0.4228 | 0.4457 | 0.4322 | 0.8192 | 0.8629 | 1.0 | 0.941 | 1.0 | 0.5163 | 0.4477 | 0.1746 | 0.0 | 0.0 |

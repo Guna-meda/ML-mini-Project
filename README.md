@@ -1,60 +1,47 @@
-# Application of Machine Learning Methods to Evaluate Collectibles
+# Funko Pop Price-Bin ML Project
 
-This repository reproduces the reference CS229 Funko Pop collectible-pricing experiments using the curated dataset bundled in this repository. The reproduction is self-contained under `project/` and does not require the original `CS229-master` repository.
+Predict a five-bin logarithmic price category for Funko Pop figures. The canonical implementation lives in `project/`.
 
-## Dataset
+## Part 1: Reference reproduction
 
-The reproduction uses `project/data/data_curated.csv` (originally taken unchanged from the reference repository's `project/src/data_sourcing/`). No new data is scraped. A different file can be used via `--data-path`.
+Reproduces only the reference models on `project/data/data_curated.csv`:
 
-## Methodology
-
-Price binning -> search-volume normalization -> categorical encoding -> stratified 4-fold cross-validation -> reference model evaluation.
-
-The target `price_bin` is created from `average_sale_price` using the reference logarithmically spaced five-bin formula. The model features are `category`, `material`, `special_version`, and `search_volume_normalized`; `average_sale_price` is not used as a model feature.
-
-## Models Reproduced
-
-- Linear SVM / One-vs-Rest
-- Linear SVM / One-vs-One
-- RBF SVM / One-vs-One
-- Custom-kernel SVM
-- Decision Tree
-- Bagged Decision Tree with 2, 5, 10, 20, 50, 100, and 200 trees
-
-## Metrics
-
-Each model is evaluated with weighted precision, weighted recall, weighted F1, and per-class precision for price bins 1 through 5 on both training and validation folds.
-
-## Running
-
-Create and activate an environment:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-```
-
-Install dependencies:
-
-```powershell
-python -m pip install -r requirements.txt
-```
-
-Run the full reproduction:
+- `linear_svm_ovr`, `ovo_linear_svm`, `ovo_rbf_svm`
+- `custom_kernel_svm`
+- `decision_tree`
+- bagged decision trees (sweep over 2-200 trees; best, `bagged_decision_tree_100`, is reported)
 
 ```powershell
 python -m project.src.reproduction
 ```
 
-Results are saved in `project/results/`:
+Outputs are written to `project/results/` (`reference_reproduction_results.csv`, `bagging_results.csv`, figures, etc.).
 
-- `reference_reproduction_results.csv`
-- `bagging_results.csv`
-- `price_bin_boundaries.csv`
-- `price_bin_summary.csv`
-- `reference_vs_reproduction_comparison.csv`
-- figures in `project/results/figures/`
+## Part 2: Gradient Boosting extension
 
-## Notes
+One additional model not used in the reference: `sklearn.ensemble.GradientBoostingClassifier(random_state=1)`. It uses the same data, target bins, features, `StratifiedKFold(n_splits=4, shuffle=True, random_state=1)`, weighted precision/recall/F1 and per-class precision as Part 1, and is compared against the saved Part 1 results.
 
-See `REPRODUCTION_NOTES.md` for compatibility fixes and assumptions. No additional model has been added in this reproduction phase.
+```powershell
+python -m project.src.part2
+```
+
+Outputs: `part2_gradient_boosting_results.csv/.md`, `part2_model_comparison.csv/.md`, `PART2_SUMMARY.md` in `project/results/`. Run Part 1 first.
+
+## Run everything
+
+```powershell
+python run_all.py
+python -m unittest discover -s project/tests -p "test_*.py"
+```
+
+## Results (validation weighted F1, produced by the code above)
+
+| Model | Test F1 |
+| --- | --- |
+| linear_svm_ovr | 0.4176 |
+| ovo_linear_svm | 0.4404 |
+| ovo_rbf_svm | 0.4382 |
+| custom_kernel_svm | 0.4205 |
+| decision_tree | 0.4089 |
+| bagged_decision_tree_100 | 0.4557 |
+| gradient_boosting (Part 2) | 0.4322 |
